@@ -1,0 +1,25 @@
+{
+    "mappings": {
+        "1": {
+            "description": "Anki",
+            "id": "162748105",
+            "tags": [
+                "Uni"
+            ]
+        },
+        "8": {
+            "description": "Youtube",
+            "id": "162748032"
+        }
+    },
+    "toggl": {
+        "settings": {
+            "token": "TOGGL-API-TOKEN",
+            "user_agent": "Toggl-Zei-Py",
+            "workspace_id": "WORKSPACE-ID"
+        }
+    },
+    "zei": {
+        "mac": "c5:58:ed:89:90:ba"
+    }
+}
