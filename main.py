@@ -12,16 +12,17 @@ _log = logging.getLogger(__name__)
 _log.addHandler(logging.StreamHandler())
 _log.setLevel(logging.INFO)
 
+
 def main():
 
     config = json.load(open("./config.json", "r"))
-    zei = Zei(config["zei"]["mac"], 'random', iface=0)
+    zei = Zei(config["zei"]["mac"], "random", iface=0)
     zei.withDelegate(TogglDelegate(zei, config))
     scanner = ZeiDiscovery(zei)
 
     while True:
         try:
-             zei.waitForNotifications(timeout=None)
+            zei.waitForNotifications(timeout=None)
         except Exception as e:
             _log.exception(e)
             scanner.reconnect()

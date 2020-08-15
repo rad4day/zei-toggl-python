@@ -13,7 +13,7 @@ class ZeiDiscoveryDelegate(btle.DefaultDelegate):
         self.periph = periph
 
     def handleDiscovery(self, dev, isNewDev, isNewData):
-        if not dev.addr == 'f1:05:a5:9c:2e:9b':
+        if not dev.addr == "f1:05:a5:9c:2e:9b":
             return
         _log.info("Device %s (%s), RSSI=%d dB", dev.addr, dev.addrType, dev.rssi)
         for (_, desc, value) in dev.getScanData():
@@ -22,7 +22,7 @@ class ZeiDiscoveryDelegate(btle.DefaultDelegate):
 
         # bluepy can only do one thing at a time, so stop scanning while trying to connect
         # this is not supported by bluepy
-        #self.scanner.stop()
+        # self.scanner.stop()
 
         try:
             self.periph.connect(dev)
