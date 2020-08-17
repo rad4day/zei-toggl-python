@@ -24,7 +24,9 @@ class TogglDelegate(ZeiDelegate):
     def handleNotification(self, cHandle, data):
         if cHandle == 38:  # Side Change Notification
             side = struct.unpack("B", data)[0]
-            self._trackProjectByMapping(self.mappings[side])
+            self._trackProjectByMapping(
+                self.mappings[side] if side in self.mappings else self.mappings[0]
+            )
         else:
             _log.info("Notification from hndl: %s - %r", cHandle, data)
 
