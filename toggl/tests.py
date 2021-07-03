@@ -34,7 +34,8 @@ class TogglPyTests(unittest.TestCase):
         self.toggl.setAPIKey(self.api_key)
 
     def test_connect(self):
-        response = self.toggl.request("https://www.toggl.com/api/v8/clients")
+        response = self.toggl.request("https://api.track.toggl.com/api/v8/clients")
+pi.track.toggl.com/
         self.assertTrue(response is not None)
 
     def test_putTimeEntry(self):
