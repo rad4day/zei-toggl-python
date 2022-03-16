@@ -3,6 +3,8 @@ from toggl.TogglPy import Toggl
 from zei.ZeiDelegate import ZeiDelegate
 from datetime import datetime, timezone
 from Mapping import Mapping
+from plyer import notification
+from os.path import dirname, realpath, join
 
 import dateutil.parser
 import logging
@@ -49,11 +51,23 @@ class TogglDelegate(ZeiDelegate):
                 _log.info("Stopping currently running entry")
                 self.toggl.stopTimeEntry(current["id"])
 
+        if pid not in self.projects:
+            _log.info("Project not found, aborting")
+            return
+
         _log.info(
             "Now tracking project %s: %s (%s)",
             self.projects[pid]["name"],
             description,
             ", ".join(tags if tags else []),
+        )
+
+        notification.notify(
+            title="Toggl",
+            message=f"Now tracking project {self.projects[pid]['name']} {description} ({', '.join(tags) if tags else ''})",
+            app_name="Toggl",
+            app_icon=join(dirname(realpath(__file__)), "icons/toggl.png"),
+            timeout=5,
         )
         if pid == 0:
             return
